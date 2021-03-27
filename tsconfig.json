@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "lib": [
+            "esnext"
+        ],
+        "moduleResolution": "node",
+        "rootDir": ".",
+        "typeRoots": [
+            "node_modules/@wartoshika",
+            "./types/*"
+        ],
+        "strict": true,
+        "baseUrl": "src",
+    },
+    "include": [
+        "./**/*.ts",
+        ".eslintrc.js"
+    ],
+    "tstl": {
+        "luaTarget": "5.1",
+        "noImplicitSelf": true,
+        "luaBundleEntry": "./src/main.ts",
+        "luaBundle": "dist/bundle.lua"
+    }
+}
