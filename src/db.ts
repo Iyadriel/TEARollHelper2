@@ -14,6 +14,19 @@ const defaults = {
             [Stats.Stamina]: 0,
         },
     },
+    global: {
+        settings: {
+            autoUpdateTRP: false,
+            debug: false,
+            minimapIcon: {},
+            refreshOnPartyUpdate: true,
+            showCustomFeatsTraits: false,
+            suggestFatePoints: true,
+        },
+        warningsSeen: {
+            updateTRP: false,
+        },
+    },
 };
 
 type TEADB = typeof defaults;

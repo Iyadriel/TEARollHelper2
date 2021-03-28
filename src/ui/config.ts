@@ -1,3 +1,4 @@
+import settingsOptions from 'ui/config/settings';
 import { openWindow, WINDOWS } from './windows';
 
 export default function getOptions(): AceOptions.Root {
@@ -20,13 +21,6 @@ export default function getOptions(): AceOptions.Root {
         args: {},
     };
 
-    const settings: AceOptions.Group = {
-        order: 2,
-        type: 'group',
-        name: 'Settings',
-        args: {},
-    };
-
     const config: AceOptions.Execute = {
         order: 3,
         type: 'execute',
@@ -43,7 +37,7 @@ export default function getOptions(): AceOptions.Root {
         args: {
             turn,
             character,
-            settings,
+            settings: settingsOptions(),
             config,
         },
     };
