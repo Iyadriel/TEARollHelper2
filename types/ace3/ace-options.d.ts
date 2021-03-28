@@ -45,6 +45,12 @@ declare namespace AceOptions {
         args: Record<string, any>;
         type: 'group';
         childGroups?: 'tree' | 'tab' | 'select';
+
+        inline?: boolean;
+        cmdInline?: boolean;
+        guiInline?: boolean;
+        dropdownInline?: boolean;
+        dialogInline?: boolean;
     }
 
     interface Root extends Omit<Group, 'order'> {
