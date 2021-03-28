@@ -1,5 +1,7 @@
+import { TEADB } from 'db';
+
 interface TEARollHelper2 extends AceAddon {
-    db?: AceDBInstance;
+    db?: AceDBInstance & TEADB;
 }
 
 declare global {

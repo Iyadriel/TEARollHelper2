@@ -16,7 +16,9 @@ const defaults = {
     },
 };
 
-export default function init(options: AceOptions.Root): void {
+type TEADB = typeof defaults;
+
+function init(options: AceOptions.Root): void {
     const db = LibStub<AceDB>('AceDB-3.0').New('TestTypescriptDB', defaults);
     TEARollHelper2.db = db;
 
@@ -26,3 +28,6 @@ export default function init(options: AceOptions.Root): void {
     db.RegisterCallback(TEARollHelper2, 'OnProfileCopied', onProfileChanged);
     db.RegisterCallback(TEARollHelper2, 'OnProfileReset', onProfileChanged);
 }
+
+export default init;
+export { TEADB };
