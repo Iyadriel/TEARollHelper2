@@ -1,10 +1,9 @@
 module.exports = {
-    extends: ['airbnb-typescript'],
+    extends: ['airbnb-typescript', 'prettier'],
     parserOptions: {
         project: './tsconfig.json',
     },
     rules: {
-        '@typescript-eslint/indent': ['error', 4],
         '@typescript-eslint/explicit-function-return-type': ['error', {
             allowExpressions: true,
         }],
