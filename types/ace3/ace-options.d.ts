@@ -21,8 +21,8 @@ type AceOptionsCallback<T> = AceOptionsCallbackFunc<T> | string;
 
 interface AceOptionsTable {
     type: AceOptionsTableType;
-    name: AceOptionsCallback<string>;
-    desc?: AceOptionsCallback<string>;
+    name: string | ((info: AceOptionsInfo) => string);
+    desc?: string | ((info: AceOptionsInfo) => string);
     validate?: AceOptionsCallback<true | string> | false;
     confirm?: AceOptionsCallback<boolean | string> | boolean;
     order: number | AceOptionsCallback<number>;
@@ -34,14 +34,114 @@ interface AceOptionsTable {
     dropdownHidden?: boolean;
     cmdHidden?: boolean;
 
-    icon?: AceOptionsCallback<string>;
+    icon?: string | ((info: AceOptionsInfo) => string);
+    iconCoords?: Array<number> | AceOptionsCallback<Array<number>>;
+
     handler?: object;
     width?: 'double' | 'half' | 'full' | 'normal' | number;
 }
 
 declare namespace AceOptions {
+    interface WithImage {
+        image?: string | ((info: AceOptionsInfo) => string);
+        imageCoords?: Array<number> | AceOptionsCallback<Array<number>>;
+        imageWidth?: number;
+        imageHeight?: number;
+    }
+
+    interface Execute extends Omit<AceOptionsTable, 'validate'>, WithImage {
+        type: 'execute';
+        func: AceOptionsCallback<void>;
+    }
+
+    type Getter<T> = (info: AceOptionsInfo) => T;
+    type Setter<T> = (info: AceOptionsInfo, value: T) => void;
+    type MultiselectGetter = (info: AceOptionsInfo, key: string) => boolean;
+    type MultiselectSetter = (
+        info: AceOptionsInfo,
+        key: string,
+        value: boolean,
+    ) => void;
+
+    interface Input<T> extends AceOptionsTable {
+        type: 'input';
+        get: Getter<T>;
+        set: Setter<T>;
+        multiline?: boolean | number;
+        pattern?: string;
+        usage?: string;
+    }
+
+    interface Toggle<T> extends AceOptionsTable {
+        type: 'toggle';
+        get: Getter<T>;
+        set: Setter<T>;
+        tristate?: boolean;
+    }
+
+    interface Range extends AceOptionsTable {
+        type: 'range';
+        min: number;
+        max: number;
+        softMin?: number;
+        softMax?: number;
+        step?: number;
+        bigStep?: number;
+        isPercent?: boolean;
+        get: Getter<number>;
+        set: Setter<number>;
+    }
+
+    interface Select<T> extends AceOptionsTable {
+        type: 'select';
+        values:
+            | Record<string, T>
+            | ((info: AceOptionsInfo) => Record<string, T>);
+        sorting?: string[] | ((info: AceOptionsInfo) => string[]);
+        get: Getter<string>;
+        set: Setter<string>;
+        style?: 'dropdown' | 'radio';
+    }
+
+    interface MultiSelect<T> extends AceOptionsTable {
+        type: 'multiselect';
+        values:
+            | Record<string, T>
+            | ((info: AceOptionsInfo) => Record<string, T>);
+        sorting?: string[] | ((info: AceOptionsInfo) => string[]);
+        get: MultiselectGetter;
+        set: MultiselectSetter;
+        style?: 'dropdown' | 'radio';
+    }
+
+    interface Header
+        extends Omit<
+            AceOptionsTable,
+            'desc' | 'validate' | 'confirm' | 'disabled' | 'handler' | 'width'
+        > {
+        type: 'header';
+    }
+
+    interface Description
+        extends Omit<
+                AceOptionsTable,
+                | 'desc'
+                | 'validate'
+                | 'confirm'
+                | 'disabled'
+                | 'handler'
+                | 'width'
+            >,
+            WithImage {
+        type: 'description';
+        fontSize?: 'small' | 'medium' | 'large';
+    }
+
     interface Group
-        extends Omit<AceOptionsTable, 'validate' | 'confirm' | 'disabled' | 'handler' | 'width'> {
+        extends Omit<
+            AceOptionsTable,
+            'validate' | 'confirm' | 'disabled' | 'handler' | 'width'
+        > {
         args: Record<string, any>;
         type: 'group';
         childGroups?: 'tree' | 'tab' | 'select';
@@ -55,11 +155,5 @@ declare namespace AceOptions {
 
     interface Root extends Omit<Group, 'order'> {
         name: string;
-    }
-
-    interface Execute extends Omit<AceOptionsTable, 'validate'> {
-        type: 'execute';
-        func: AceOptionsCallback<void>;
-        // TODO: image + related props
     }
 }
