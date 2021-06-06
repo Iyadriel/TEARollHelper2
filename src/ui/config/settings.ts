@@ -1,6 +1,5 @@
 import settings from 'settings';
 import { Widgets } from 'ui/widgets';
-// import { Group, Toggle } from 'ui/widgets';
 
 export default function getOptions(): AceOptions.Group {
     return {
