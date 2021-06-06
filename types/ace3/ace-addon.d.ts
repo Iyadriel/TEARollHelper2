@@ -1,13 +1,14 @@
 interface Library {}
 
-interface AceAddon {
+interface AceAddon<T> {
     name: string;
     tostring(): string;
+    db: AceDBInstance<T>;
 
     OnInitialize(): void;
     Print(...args: any[]): void;
 }
 
 interface AceAddonLib extends Library {
-    NewAddon(name: string, ...embed: string[]): AceAddon;
+    NewAddon<T>(name: string, ...embed: string[]): AceAddon<T>;
 }

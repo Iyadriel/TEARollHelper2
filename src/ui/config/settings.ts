@@ -39,11 +39,11 @@ export default function getOptions(): AceOptions.Group {
                         set: (info, value) => {
                             settings.autoUpdateTRP.set(value);
                             if (value) {
-                                TEARollHelper2.db!.global.warningsSeen.updateTRP = true;
+                                TEARollHelper2.db.global.warningsSeen.updateTRP = true;
                             }
                         },
                         confirm() {
-                            const { global } = TEARollHelper2.db!;
+                            const { global } = TEARollHelper2.db;
                             if (
                                 !settings.autoUpdateTRP.get() &&
                                 !global.warningsSeen.updateTRP

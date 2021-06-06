@@ -8,10 +8,10 @@ function getSet(
 ): GetterSetter<boolean> {
     return {
         get(): boolean {
-            return TEARollHelper2.db!.global.settings[key];
+            return TEARollHelper2.db.global.settings[key];
         },
         set(value: boolean): void {
-            TEARollHelper2.db!.global.settings[key] = value;
+            TEARollHelper2.db.global.settings[key] = value;
             if (callback) callback(value);
         },
     };

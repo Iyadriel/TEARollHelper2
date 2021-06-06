@@ -1,3 +1,6 @@
-interface AceDBOptions extends AceCallback {
-    GetOptionsTable(db: AceDBInstance, noDefaultProfiles?: boolean): AceOptionsTable;
+interface AceDBOptions<T> extends AceCallback {
+    GetOptionsTable(
+        db: AceDBInstance<T>,
+        noDefaultProfiles?: boolean,
+    ): AceOptionsTable;
 }
