@@ -21,15 +21,8 @@ function getPlayerStamina(): Stat {
     return TEARollHelper2.db.profile.stats.stamina as Stat;
 }
 
-const statFns = {
-    [Stats.Offence]: getPlayerOffence,
-    [Stats.Defence]: getPlayerDefence,
-    [Stats.Spirit]: getPlayerSpirit,
-    [Stats.Stamina]: getPlayerStamina,
-};
-
 function getPlayerStat(stat: Stats): Stat {
-    return statFns[stat]();
+    return TEARollHelper2.db.profile.stats[stat] as Stat;
 }
 
 function hasProficiency(stat: Stats): boolean {
