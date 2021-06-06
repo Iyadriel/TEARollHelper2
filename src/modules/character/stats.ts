@@ -1,4 +1,6 @@
 import { Stats } from 'constants';
+import { hasWeakness } from 'modules/character';
+import { WEAKNESSES } from 'resources';
 
 const STAT_POINTS_PROFICIENCY = 4;
 const STAT_POINTS_MASTERY = 6;
@@ -31,15 +33,13 @@ function getPlayerStat(stat: Stats): Stat {
 }
 
 function hasProficiency(stat: Stats): boolean {
-    // TODO
-    // if (hasWeakness(WEAKNESSES.ACOLYTE)) return false;
+    if (hasWeakness(WEAKNESSES.ACOLYTE)) return false;
 
     return getPlayerStat(stat) >= STAT_POINTS_PROFICIENCY;
 }
 
 function hasMastery(stat: Stats): boolean {
-    // TODO
-    // if (hasWeakness(WEAKNESSES.ACOLYTE)) return false;
+    if (hasWeakness(WEAKNESSES.ACOLYTE)) return false;
 
     return getPlayerStat(stat) >= STAT_POINTS_MASTERY;
 }
