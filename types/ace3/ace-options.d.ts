@@ -72,10 +72,10 @@ declare namespace AceOptions {
         usage?: string;
     }
 
-    interface Toggle<T> extends AceOptionsTable {
+    interface Toggle extends AceOptionsTable {
         type: 'toggle';
-        get: Getter<T>;
-        set: Setter<T>;
+        get: Getter<boolean>;
+        set: Setter<boolean>;
         tristate?: boolean;
     }
 

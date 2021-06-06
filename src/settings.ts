@@ -2,7 +2,10 @@ import { TEADB } from 'db';
 
 type BooleanSetting = Exclude<keyof TEADB['global']['settings'], 'minimapIcon'>;
 
-function getSet(key: BooleanSetting, callback?: (value: any) => void): GetterSetter<boolean> {
+function getSet(
+    key: BooleanSetting,
+    callback?: (value: any) => void,
+): GetterSetter<boolean> {
     return {
         get(): boolean {
             return TEARollHelper2.db!.global.settings[key];
