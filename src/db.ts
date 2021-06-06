@@ -32,10 +32,12 @@ const defaults = {
 type TEADB = typeof defaults;
 
 function init(options: AceOptions.Root): void {
-    const db = LibStub<AceDB>('AceDB-3.0').New('TestTypescriptDB', defaults);
+    const db = LibStub<AceDB>('AceDB-3.0').New('TeaRollHelper2DB', defaults);
     TEARollHelper2.db = db;
 
-    options.args.profile = LibStub<AceDBOptions>('AceDBOptions-3.0').GetOptionsTable(db);
+    options.args.profile = LibStub<AceDBOptions>(
+        'AceDBOptions-3.0',
+    ).GetOptionsTable(db);
 
     db.RegisterCallback(TEARollHelper2, 'OnProfileChanged', onProfileChanged);
     db.RegisterCallback(TEARollHelper2, 'OnProfileCopied', onProfileChanged);
