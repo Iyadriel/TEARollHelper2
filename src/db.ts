@@ -1,7 +1,7 @@
 import { Event, fire } from 'bus';
 import { Stats } from 'constants';
 import CharacterSheet from 'models/character-sheet';
-import { FEATS } from 'resources/feats';
+import { FEATS } from 'resources';
 
 function onProfileChanged(): void {
     fire(Event.PROFILE_CHANGED);
@@ -16,6 +16,7 @@ function getDefaultCharacterSheet(): CharacterSheet {
             [Stats.Stamina]: 0,
         },
         featID: FEATS.FEATLESS.id,
+        weaknesses: {},
     };
 }
 

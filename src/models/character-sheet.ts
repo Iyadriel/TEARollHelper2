@@ -1,5 +1,5 @@
 import { Stats } from 'constants';
-import { FeatID } from 'resources/feats';
+import { FeatID, WeaknessID } from 'resources';
 
 export default interface CharacterSheet {
     stats: {
@@ -9,4 +9,5 @@ export default interface CharacterSheet {
         [Stats.Stamina]: number;
     };
     featID: FeatID;
+    weaknesses: Partial<Record<WeaknessID, boolean>>;
 }
