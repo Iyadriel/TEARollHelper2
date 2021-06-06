@@ -1,19 +1,26 @@
 import { Event, fire } from 'bus';
 import { Stats } from 'constants';
+import CharacterSheet from 'models/character-sheet';
+import { FEATS } from 'resources/feats';
 
 function onProfileChanged(): void {
     fire(Event.PROFILE_CHANGED);
 }
 
-const defaults = {
-    profile: {
+function getDefaultCharacterSheet(): CharacterSheet {
+    return {
         stats: {
             [Stats.Offence]: 0,
             [Stats.Defence]: 0,
             [Stats.Spirit]: 0,
             [Stats.Stamina]: 0,
         },
-    },
+        featID: FEATS.FEATLESS.id,
+    };
+}
+
+const defaults = {
+    profile: getDefaultCharacterSheet(),
     global: {
         settings: {
             autoUpdateTRP: false,
