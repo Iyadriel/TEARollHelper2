@@ -4,6 +4,12 @@ enum Event {
     // System
     INITIALIZED = 'INITIALIZED',
     PROFILE_CHANGED = 'PROFILE_CHANGED',
+
+    // Character sheet
+    FEAT_CHANGED = 'FEAT_CHANGED', // featID
+    WEAKNESSES_CHANGED = 'WEAKNESSES_CHANGED',
+    WEAKNESS_ADDED = 'WEAKNESS_ADDED', // weaknessID
+    WEAKNESS_REMOVED = 'WEAKNESS_REMOVED', // weaknessID
 }
 
 type EventCallback = (...args: any[]) => any;
