@@ -1,4 +1,13 @@
 export namespace Widgets {
+    export function Execute(
+        execute: Omit<AceOptions.Execute, 'type'>,
+    ): AceOptions.Execute {
+        return {
+            type: 'execute',
+            ...execute,
+        };
+    }
+
     export function Toggle(
         toggle: Omit<AceOptions.Toggle, 'type'>,
     ): AceOptions.Toggle {
