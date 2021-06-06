@@ -1,5 +1,5 @@
 import { Event, fire } from 'bus';
-import { Feat, FeatID, FEATS } from 'resources';
+import { Feat, FeatID, FEATS } from 'resources/index';
 
 function getPlayerFeat(): Feat {
     return FEATS[TEARollHelper2.db.profile.featID];

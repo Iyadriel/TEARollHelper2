@@ -1,7 +1,7 @@
 import { Event, fire } from 'bus';
 import { Stats } from 'constants';
 import CharacterSheet from 'models/character-sheet';
-import { FEATS } from 'resources';
+import { FEATS } from 'resources/index';
 
 function onProfileChanged(): void {
     fire(Event.PROFILE_CHANGED);

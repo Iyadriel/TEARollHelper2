@@ -1,5 +1,5 @@
 import { addListener, Event, fire } from 'bus';
-import { FEATS, Weakness, WEAKNESSES, WeaknessID } from 'resources';
+import { FEATS, Weakness, WEAKNESSES, WeaknessID } from 'resources/index';
 import { setPlayerFeatByID } from './feats';
 
 function getPlayerWeaknesses(): Partial<

@@ -1,3 +1,4 @@
+import characterOptions from 'ui/config/character';
 import settingsOptions from 'ui/config/settings';
 import { Widgets } from 'ui/widgets';
 import { openWindow, WINDOWS } from './windows';
@@ -20,7 +21,9 @@ export default function getOptions(): AceOptions.Root {
                 desc: 'Character setup',
                 cmdHidden: true,
                 childGroups: 'tab',
-                args: {},
+                args: {
+                    character: characterOptions(),
+                },
             }),
             settings: settingsOptions(),
             config: Widgets.Execute({

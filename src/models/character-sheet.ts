@@ -1,5 +1,5 @@
 import { Stats } from 'constants';
-import { FeatID, WeaknessID } from 'resources';
+import { FeatID, WeaknessID } from 'resources/index';
 
 export default interface CharacterSheet {
     stats: {

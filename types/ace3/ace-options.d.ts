@@ -11,9 +11,12 @@ type AceOptionsTableType =
     | 'description'
     | 'group';
 
-interface AceOptionsInfo {
+interface AceOptionsInfo extends Array<string> {
+    [index: number]: string;
+    // @ts-ignore: I'm creating a Dictarray!
+    0: string;
+    // @ts-ignore: I'm creating a Dictarray!
     options: AceOptionsTable;
-    // TODO
 }
 
 type AceOptionsCallbackFunc<T> = (info: AceOptionsInfo, value?: any) => T;
@@ -88,8 +91,8 @@ declare namespace AceOptions {
         step?: number;
         bigStep?: number;
         isPercent?: boolean;
-        get: Getter<number>;
-        set: Setter<number>;
+        get?: Getter<number>;
+        set?: Setter<number>;
     }
 
     interface Select<T> extends AceOptionsTable {
@@ -137,7 +140,7 @@ declare namespace AceOptions {
         fontSize?: 'small' | 'medium' | 'large';
     }
 
-    interface Group
+    interface Group<T = void>
         extends Omit<
             AceOptionsTable,
             'validate' | 'confirm' | 'disabled' | 'handler' | 'width'
@@ -145,6 +148,9 @@ declare namespace AceOptions {
         args: Record<string, any>;
         type: 'group';
         childGroups?: 'tree' | 'tab' | 'select';
+        get?: Getter<T>;
+        set?: Setter<T>;
+        validate?: (info: AceOptionsInfo, input: string) => string | boolean;
 
         inline?: boolean;
         cmdInline?: boolean;

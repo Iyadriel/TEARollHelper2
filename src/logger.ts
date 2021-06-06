@@ -1,3 +1,5 @@
+import settings from 'settings';
+
 type ChatFrame = WoWAPI.ChatFrame;
 
 declare const DEFAULT_CHAT_FRAME: ChatFrame;
@@ -16,7 +18,9 @@ function findDebugFrame(): ChatFrame | undefined {
 const debugFrame = findDebugFrame() || DEFAULT_CHAT_FRAME;
 
 function debug(...args: any[]): void {
-    TEARollHelper2.Print(debugFrame, ...args);
+    if (settings.debug.get()) {
+        TEARollHelper2.Print(debugFrame, ...args);
+    }
 }
 
 // eslint-disable-next-line import/prefer-default-export

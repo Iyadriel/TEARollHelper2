@@ -17,4 +17,11 @@ enum Stats {
     Stamina = 'stamina',
 }
 
-export { Actions, Stats };
+const StatLabels = {
+    [Stats.Offence]: 'Offence',
+    [Stats.Defence]: 'Defence',
+    [Stats.Spirit]: 'Spirit',
+    [Stats.Stamina]: 'Stamina',
+};
+
+export { Actions, Stats, StatLabels };

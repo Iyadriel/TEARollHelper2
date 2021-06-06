@@ -2,9 +2,8 @@ import settings from 'settings';
 import { Widgets } from 'ui/widgets';
 
 export default function getOptions(): AceOptions.Group {
-    return {
+    return Widgets.Group({
         order: 2,
-        type: 'group',
         name: 'Settings',
         cmdHidden: true,
         args: {
@@ -72,5 +71,5 @@ export default function getOptions(): AceOptions.Group {
                 },
             }),
         },
-    };
+    });
 }

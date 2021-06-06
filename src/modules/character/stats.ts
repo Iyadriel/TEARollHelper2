@@ -1,6 +1,7 @@
+import { Event, fire } from 'bus';
 import { Stats } from 'constants';
-import { hasWeakness } from 'modules/character';
-import { WEAKNESSES } from 'resources';
+import { WEAKNESSES } from 'resources/index';
+import { hasWeakness } from './weaknesses';
 
 const STAT_POINTS_PROFICIENCY = 4;
 const STAT_POINTS_MASTERY = 6;
@@ -69,6 +70,14 @@ function hasStaminaMastery(): boolean {
     return hasMastery(Stats.Stamina);
 }
 
+function setStat(stat: Stats, value: Stat): void {
+    const oldValue = TEARollHelper2.db.profile.stats[stat];
+    TEARollHelper2.db.profile.stats[stat] = value;
+    if (oldValue !== value) {
+        fire(Event.CHARACTER_STAT_CHANGED, stat, value);
+    }
+}
+
 export {
     getPlayerOffence,
     getPlayerDefence,
@@ -85,4 +94,5 @@ export {
     hasDefenceMastery,
     hasSpiritMastery,
     hasStaminaMastery,
+    setStat,
 };

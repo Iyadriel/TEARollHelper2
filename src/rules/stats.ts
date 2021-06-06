@@ -4,8 +4,8 @@ import {
     hasFeat,
     hasStaminaMastery,
     hasWeakness,
-} from 'modules/character';
-import { FEATS, WEAKNESSES } from 'resources';
+} from 'modules/character/index';
+import { FEATS, WEAKNESSES } from 'resources/index';
 
 const BASE_MAX_HEALTH = 25;
 const BASE_STAT_POINTS = 12;
